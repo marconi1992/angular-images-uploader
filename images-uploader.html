@@ -1,0 +1,32 @@
+<div class="put-padding">
+    <div class="form-inline form-upload-images text-center">
+        <div class="row">
+            <div class="form-group col-md-4" ng-repeat="image in images" >
+                <div class="pre-image" ng-class="{ featured : image.featured }">
+                    <button type="button" class="close close-image" aria-label="Close" ng-click="removeImage($index); $event.stopPropagation();" ><span aria-hidden="true">&times;</span></button>
+                    <div ng-click="choiceFeatured(image)">
+                        <img class="img-responsive" ng-src="{{ image.url }}" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-4" ng-repeat="item in uploader.queue" ng-hide="item.isUploaded || item.isCancel" >
+                <div class="pre-image in-progress">
+                    <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 170,  }"></div>
+                </div>
+                <div class="progress no-margin">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{item.progress}" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width': item.progress + '%' }">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="form-group col-md-4" ng-show="(images.length) < 3">                           
+                <div class="select-image  my-drop-zone" nv-file-drop  uploader="uploader">
+                    <p>Arrastre la imagen aqui</p>
+                </div>
+                <label class="btn btn-default btn-file center-block">
+                    Seleccionar Imagen <input type="file" nv-file-select="" uploader="uploader"  style="display: none;">
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
